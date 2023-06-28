@@ -22,3 +22,4 @@ urlpatterns = [
     path('', include('main_app.urls')),
     path('about/', include('main_app.urls')) # <- here is the new line to include the urls of our app
 ]
+
