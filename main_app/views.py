@@ -1,7 +1,9 @@
+from typing import Any, Dict
 from django.shortcuts import render
 from django.views import View
 from django.http import HttpResponse
 from django.views.generic.base import TemplateView
+from django.views.generic.edit import CreateView
 # Create your views here.
 
 class Home(TemplateView):
@@ -10,14 +12,49 @@ class Home(TemplateView):
 class About(TemplateView):
     template_name = "about.html"
 
-class ArtistList(TemplateView):
-    template_name = "artist_list"
-
 class Artist:
     def __init__(self, name, image, bio):
         self.name = name
         self.image = image
         self.bio = bio
+
+class ArtistCreate(CreateView):
+    model = Artist
+    fields = ['name', 'image', 'country']
+    template_name = "artist_create.html"
+    success_url = '/artists/'
+
+class ArtistList(TemplateView):
+    template_name = "artist_list.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["artists"] = artists 
+        return context
+    
+
+class Artwork:
+    def __init__(self, name, image, artist, materials):
+        self.name = name
+        self.image = image
+        self.artist = artist
+        self.materials = materials
+
+class ArtworkList(TemplateView):
+    template_name = "artwork_list.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["artworks"] = artworks
+        return context
+    
+artworks = [
+    Artwork("So Much Fun", "https://d7hftxdivxxvm.cloudfront.net/?height=800&quality=80&resize_to=fit&src=https%3A%2F%2Fd32dm0rphc51dk.cloudfront.net%2FLA0gRTplt6EuB_IeDXOJdA%2Fnormalized.jpg&width=800", "Takashi Murakami", "Offset print with silver and high gloss varnishing"),
+    Artwork("So Much Fun", "https://d7hftxdivxxvm.cloudfront.net/?height=800&quality=80&resize_to=fit&src=https%3A%2F%2Fd32dm0rphc51dk.cloudfront.net%2FLA0gRTplt6EuB_IeDXOJdA%2Fnormalized.jpg&width=800", "Takashi Murakami", "Offset print with silver and high gloss varnishing"),
+    Artwork("So Much Fun", "https://d7hftxdivxxvm.cloudfront.net/?height=800&quality=80&resize_to=fit&src=https%3A%2F%2Fd32dm0rphc51dk.cloudfront.net%2FLA0gRTplt6EuB_IeDXOJdA%2Fnormalized.jpg&width=800", "Takashi Murakami", "Offset print with silver and high gloss varnishing"),
+    Artwork("So Much Fun", "https://d7hftxdivxxvm.cloudfront.net/?height=800&quality=80&resize_to=fit&src=https%3A%2F%2Fd32dm0rphc51dk.cloudfront.net%2FLA0gRTplt6EuB_IeDXOJdA%2Fnormalized.jpg&width=800", "Takashi Murakami", "Offset print with silver and high gloss varnishing"),
+]
+
 
 
 artists = [

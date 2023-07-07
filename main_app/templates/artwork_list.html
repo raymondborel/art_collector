@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% comment %} for head title tags and helping us with SEO {% endcomment %}
+{% block title %}Artwork{% endblock  %}
+
+{% block content %}
+
+<h1 class="title pt-5">All Artworks</h1>
+<div class="gallery">
+  {% for artwork in artworks %}
+  <a href="">
+    <div class="card">
+      <div class="card-image">
+        <figure class="image is-square">
+          <img src="{{artwork.image}}" alt="{{artwork.name}}" />
+        </figure>
+      </div>
+      <div class="card-header">
+        <p class="card-header-title">{{artwork.name}}</p>
+      </div>
+    </div>
+  </a>
+	{% empty %}
+  <article class="message">
+    <div class="message-header">
+      <p>No Artworks Available</p>
+    </div>
+  </article>
+  {% endfor %}
+</div>
+{% endblock %}
