@@ -4,6 +4,7 @@ from django.views import View
 from django.http import HttpResponse
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import CreateView
+from .models import Artist
 # Create your views here.
 
 class Home(TemplateView):
@@ -20,7 +21,7 @@ class About(TemplateView):
 
 class ArtistCreate(CreateView):
     model = Artist
-    fields = ['name', 'image', 'country']
+    fields = ['name', 'image', 'bio']
     template_name = "artist_create.html"
     success_url = '/artists/'
 
@@ -29,7 +30,7 @@ class ArtistList(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["artists"] = artists 
+        context["artists"] = Artist.object.all() 
         return context
     
 
