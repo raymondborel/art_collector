@@ -2,13 +2,17 @@
 {% block content %}
 <h1>Add an Artist</h1>
 
-<form method="post">
+<form method="post" class="form">
 <!-- Security Feature  -->
   {% csrf_token %} 
 <!--  Generate inputs  -->
-  {{form.as_p}} 
+  <div class="field">
+    {{form.as_p}} 
+  </div>>
 <!--  Submit form  -->
-  <input type="submit" value="Submit" />
+    <div class="control">
+        <input type="submit" value="Submit" class="button is-primary" />
+    </div>
 </form>
 
 {% endblock %}
