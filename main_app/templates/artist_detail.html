@@ -7,9 +7,30 @@
     <h1 class="title">{{artist.name}}</h1>
 </div>
 <div class="detail__container">
+    <!-- inside container -->
+  <div class="detail__songs mb-5">
+    <h3 class="title is-3">Artworks</h3>
+
+    {% for artwork in artist.artworks.all %}
+    <div class="song">
+      <span>{{forloop.counter}}</span>
+      <span><b>{{artwork.name}}</b></span>
+      <div class="card-image">
+        <img src="{{artwork.image}}">
+    </div>
+    </div>
+		{% empty %}
+    <article class="message">
+      <div class="message-header">
+        <p>No Songs Available</p>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+<!--  above about section  -->
     <div class="detail__container">
         <div class="buttons">
-        <a href="{% url 'artist_update' artist.pk %}" class="button is-info"> Updates
+        <a href="{% url 'artist_update' artist.pk %}" class="button is-info"> Update
             <span class="icon">
                 <i class="fas fa-edit"></i>
             </span>
