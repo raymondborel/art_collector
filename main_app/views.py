@@ -4,6 +4,7 @@ from django.views import View
 from django.http import HttpResponse
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import CreateView
+from django.views.generic import DetailView
 from .models import Artist
 # Create your views here.
 
@@ -13,11 +14,6 @@ class Home(TemplateView):
 class About(TemplateView):
     template_name = "about.html"
 
-# class Artist:
-#     def __init__(self, name, image, bio):
-#         self.name = name
-#         self.image = image
-#         self.bio = bio
 
 class ArtistCreate(CreateView):
     model = Artist
@@ -38,6 +34,10 @@ class ArtistList(TemplateView):
             context["artists"] = Artist.objects.all()
             context["header"] = "Trending Artists"
         return context
+    
+class ArtistDetail(DetailView):
+    model = Artist
+    template_name = "artist_detail.html"
     
 
 class Artwork:
