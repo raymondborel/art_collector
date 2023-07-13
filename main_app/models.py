@@ -22,3 +22,10 @@ class Artwork(models.Model):
 
     def __str__(self):
         return self.name
+
+class Collection(models.Model):
+    title = models.CharField(max_length=150)
+    artworks = models.ManyToManyField(Artwork)
+
+    def __str__(self):
+        return self.title

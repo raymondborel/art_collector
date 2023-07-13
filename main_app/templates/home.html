@@ -1,4 +1,25 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>Spotify Home</h1>
+<div class="home__playlists">
+    {% for collection in collections %}
+
+        <div class="playlist mb-5">
+            <h3 class="title is-3 has-text-success">{{collection.title}}</h3>
+            <hr />
+
+            {% for artwork in collection.artworks.all %}
+
+                <div class="song">
+                    <span>{{forloop.counter}}</span>
+                    <span><b>{{artwork.name}}</b></span>
+                </div>
+                <div class="card-image">
+                    <img src="{{artwork.image}}">
+                </div>
+            {% endfor %}
+        </div>
+    {% empty %} 
+        <div class="playlist mb-5">"There are no artworks in this collection"</div>
+    {% endfor %}
+</div>
 {% endblock %}
