@@ -18,7 +18,7 @@ class Artwork(models.Model):
 
     name = models.CharField(max_length=150)
     image = models.CharField(max_length=300)
-    artist = models.ForeignKey(Artist, on_delete=models.CASCADE, related_name="songs")
+    artist = models.ForeignKey(Artist, on_delete=models.CASCADE, related_name="artworks")
 
     def __str__(self):
         return self.name

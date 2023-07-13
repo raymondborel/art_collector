@@ -10,5 +10,6 @@ urlpatterns = [
     path('artists/<int:pk>/', views.ArtistDetail.as_view(), name="artist_detail"),
     path('artists/<int:pk>/update',views.ArtistUpdate.as_view(), name="artist_update"),
     path('artists/<int:pk>/delete',views.ArtistDelete.as_view(), name="artist_delete"),
-    path('artists/<int:pk>/artworks/new/', views.ArtworkCreate.as_view(), name="artwork_create")
+    path('artists/<int:pk>/artworks/new/', views.ArtworkCreate.as_view(), name="artwork_create"),
+    path('collections/<int:pk>/artworks/<int:artwork_pk>/', views.CollectionArtworkAssoc.as_view(), name="collection_artwork_assoc"),
     ]

@@ -2,24 +2,25 @@
 {% block content %}
 <div class="home__playlists">
     {% for collection in collections %}
-
         <div class="playlist mb-5">
             <h3 class="title is-3 has-text-success">{{collection.title}}</h3>
             <hr />
-
-            {% for artwork in collection.artworks.all %}
-
-                <div class="song">
-                    <span>{{forloop.counter}}</span>
-                    <span><b>{{artwork.name}}</b></span>
-                </div>
-                <div class="card-image">
-                    <img src="{{artwork.image}}">
-                </div>
-            {% endfor %}
+            {% if collection.artworks.all %}
+                {% for artwork in collection.artworks.all %}
+                    <div class="song">
+                        <span>{{forloop.counter}}</span>
+                        <span><b>{{artwork.name}}</b></span>
+                    </div>
+                    <div class="card-image">
+                        <img src="{{artwork.image}}">
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="no-artworks">There are no artworks in this collection.</div>
+            {% endif %}
         </div>
     {% empty %} 
-        <div class="playlist mb-5">"There are no artworks in this collection"</div>
+        <div class="playlist mb-5">There are no collections.</div>
     {% endfor %}
 </div>
 {% endblock %}
